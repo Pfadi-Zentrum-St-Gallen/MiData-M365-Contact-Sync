@@ -1,2 +1,14 @@
 # MiData-M365-Contact-Sync
-Contact Sync Service similar to Entra Sync for Active Directory but only for Contacts^^
+```
++----------------+       +---------------------+       +-----------------+
+|                |       |   Contact Sync      |       |                 |
+|  MiData API    <-------> Service (Bash)      <-------> Microsoft Graph |
+|                | HTTPS | Docker Container    | HTTPS | (M365 Contacts) |
++----------------+       +-----+-----------+---+       +-----------------+
+                               |           |
+                               |           |
+                     +---------v-+   +-----v---------+
+                     | Config &  |   | Logs &        |
+                     | Secrets   |   | Audit Trails  |
+                     +-----------+   +---------------+
+```
