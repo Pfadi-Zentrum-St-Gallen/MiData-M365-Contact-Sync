@@ -32,6 +32,14 @@
 │   ├── auth.sh                # Handles Microsoft Graph authentication
 │   ├── midata.sh              # MiData API helpers
 │   └── utils.sh               # Logging/error handling
+│   ├── camp_sync.sh           # Camp group creation/deletion logic
+│   └── membership.sh          # Add/remove users from groups
+
+-- Not sure design wise
+├── db/                        # Track camps & groups (JSON-based "database")
+│   └── active_camps.json      # {"camp_id": "123", "m365_group_id": "xyz", "end_date": "2024-0
+--
+
 ├── logs/
 │   └── sync.log               # Logs (rotated by logrotate)
 └── docker/
