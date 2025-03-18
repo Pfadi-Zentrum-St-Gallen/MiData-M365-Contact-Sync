@@ -1,4 +1,7 @@
 # MiData-M365-Contact-Sync
+
+## General Architecture (Not Final)
+
 ```
 +----------------+       +---------------------+       +-----------------+
 |                |       |   Contact Sync      |       |                 |
@@ -14,6 +17,8 @@
 ```
 
 ---
+
+### File Sturcture (Not Final)
 
 ```
 /opt/contact-sync/
