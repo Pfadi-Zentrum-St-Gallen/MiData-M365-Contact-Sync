@@ -56,7 +56,7 @@ A service to sync **ScoutCH hitobito_pbs** members as contacts to Microsoft 365 
 ## Setup
 
 ### 1. Prerequisites
-- Entra AD App with `Contacts.ReadWrite` and `Group.ReadWrite.All` permissions.
+- Entra AD App with MS Graph API `Contacts.ReadWrite` and `Group.ReadWrite.All` permissions.
 - MiData (Hitobito) API access (API key).
 - `openssl` installed.
 
