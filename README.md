@@ -20,7 +20,7 @@ A service to sync **ScoutCH hitobito_pbs** members as contacts to Microsoft 365 
 | (Events/People)<-----> Service (Docker)    <-----> Graph (Contacts |
 +----------------+     +-----+-----------+---+     |  & Groups)      |
                              |           |         +-----------------+
-                    +-----v--------+ +---v----+
+                    +--------v-----+ +---v----+
                     | PBS ID Anchor| | Camp   |
                     | Database     | | DB     |
                     +--------------+ +--------+
