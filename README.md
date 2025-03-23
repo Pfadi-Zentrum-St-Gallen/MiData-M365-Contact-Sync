@@ -28,7 +28,9 @@ A service to sync **ScoutCH hitobito_pbs** members as contacts to Microsoft 365 
 
 ---
 
-## File Structure for POC in Bash (Not realy ment for Production xD)
+## Bash POC (Bash POC Branche)
+
+### File Structure for POC in Bash (Not realy ment for Production xD)
 ```bash
 /opt/contact-sync/
 ├── bin/
@@ -53,14 +55,14 @@ A service to sync **ScoutCH hitobito_pbs** members as contacts to Microsoft 365 
 
 ---
 
-## Setup
+### Setup
 
-### 1. Prerequisites
+#### 1. Prerequisites
 - Entra AD App with MS Graph API `Contacts.ReadWrite` and `Group.ReadWrite.All` permissions.
 - MiData (Hitobito) API access (API key).
 - `openssl` installed.
 
-### 2. Configure Secrets
+#### 2. Configure Secrets
 ```bash
 ./contact-sync configure \
   --azure-tenant "contoso.onmicrosoft.com" \
@@ -68,7 +70,7 @@ A service to sync **ScoutCH hitobito_pbs** members as contacts to Microsoft 365 
   --cert-path ./config/cert.pfx
 ```
 
-### 3. Build & Run Docker (If wanted)
+#### 3. Build & Run Docker (If wanted)
 ```bash
 docker build -t contact-sync -f docker/Dockerfile .
 docker run -d \
