@@ -15,19 +15,17 @@ A service to sync **ScoutCH hitobito_pbs** members as contacts to Microsoft 365 
 
 ## Architecture
 ```Text
-+-------------------+            +-------------------+            +-------------------+
-|                   |            |                   |            |                   |
-|   Hitobito API    +----------->+   Messaging Queue +----------->+  M365 Sync Worker |
-|                   |            |                   |            |                   |
-| (Polling/Change   |            | (e.g., RabbitMQ,  |            | (Consumes from    |
-|  Detection)       |            | Kafka, or Azure)  |            | Queue & Pushes to |
-|                   |            |                   |            | M365 Graph API)   |
-+-------------------+            +-------------------+            +-------------------+
-        |                             |                                     |
-        |                             |                                     |
-        v                             v                                     v
-+-------------------+   +---------------------------+   +---------------------------+
-|   Normalization   |   |   Reliable Delivery w/    |   |  Error Handling & Retry   |
-|   & Deduplication |   |   Ordering & Retries      |   |  (Dead-Letter Queue)      |
-+-------------------+   +---------------------------+   +---------------------------+
++-------------------+        +-------------------+        +-------------------+        +-------------------+
+|                   |        |                   |        |                   |        |                   |
+|   Hitobito DB     | -----> |     Producer      | -----> |     RabbitMQ      | -----> |    Consumer        |
+|                   |        | (Delta Detection) |        |                   |        | (MS Graph API)     |
++-------------------+        +-------------------+        +-------------------+        +-------------------+
+         |                           |                                  |                          |
+         |                           |                                  |                          |
+         v                           v                                  v                          v
++-------------------+   +-------------------+            +-------------------+        +-------------------+
+|   last_changed    |   |   Compare         |            |   Durable Queue   |        |   Create/Update   |
+|                   |   |   vs              |            |                   |        |   Contacts        |
++-------------------+   +-------------------+            +-------------------+        +-------------------+
+                                                 Dead-letter Queue (DLQ) for errors
 ```
