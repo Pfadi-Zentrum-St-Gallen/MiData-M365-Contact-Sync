@@ -2,6 +2,9 @@
 
 A service to sync **ScoutCH hitobito_pbs** members as contacts to Microsoft 365 (M365) and automate camp-based distribution groups. Uses Microsoft Graph API with security-first design.
 
+> **ℹ️ Info:**
+> Active Development happens in Alpha-1 Branche, if you want to see current development State!
+
 ---
 
 ## Planned Feature set
