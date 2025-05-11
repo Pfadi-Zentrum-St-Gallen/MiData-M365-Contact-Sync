@@ -177,3 +177,9 @@ cython_debug/
 .pypirc
 
 .env
+
+test.sh
+
+output.json
+
+ChatGPT-Summary.md
