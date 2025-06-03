@@ -20,4 +20,3 @@
 | GET    | /api/event_kind_categories/:id | Fetch a single event kind category, replace :id with the event's primary key |
 
 # Hitobito Get Idea
-layer_group_id
