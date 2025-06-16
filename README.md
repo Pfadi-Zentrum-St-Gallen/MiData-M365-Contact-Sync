@@ -8,6 +8,8 @@ Microsoft Graph API.
 ## Usage
 
 1. Create a `.env` file based on `.env.example` and provide the required keys.
+   The `LAYER_GROUP_ID` determines which Hitobito layer group will be
+   synchronised.
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt

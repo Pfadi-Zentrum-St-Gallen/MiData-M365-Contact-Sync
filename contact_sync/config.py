@@ -11,3 +11,6 @@ QUEUE_NAME = os.getenv("QUEUE_NAME", "contact.sync")
 GRAPH_API_BASE_URL = os.getenv("GRAPH_API_BASE_URL", "https://graph.microsoft.com/v1.0")
 M365_USER_ID = os.getenv("M365_USER_ID", "me")
 GRAPH_API_TOKEN = os.getenv("GRAPH_API_TOKEN")
+
+# Hitobito layer group used for filtering members
+LAYER_GROUP_ID = os.getenv("LAYER_GROUP_ID", "6855")
