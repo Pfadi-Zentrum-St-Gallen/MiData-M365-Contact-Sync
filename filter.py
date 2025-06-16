@@ -1,20 +1,18 @@
 import json
+from contact_sync.filtering import filter_by_layer_group
 
-# JSON-Datei laden
-with open("output.json", "r") as file:
-    data = json.load(file)
 
-# Filterkriterium: Layer Group ID
-target_layer_group_id = "6855"
+def main(path="output.json", layer_group_id="6855"):
+    with open(path, "r") as file:
+        data = json.load(file)
 
-# Personen filtern, die zur gewünschten Layer Group gehören
-filtered_people = [
-    person for person in data.get("data", [])
-    if person.get("relationships", {}).get("layer_group", {}).get("data", {}).get("id") == target_layer_group_id
-]
+    filtered = filter_by_layer_group(data, layer_group_id)
 
-# Gefilterte Ergebnisse ausgeben
-print(f"Gefundene Personen in Layer Group {target_layer_group_id}:")
-for person in filtered_people:
-    attributes = person.get("attributes", {})
-    print(f"- {attributes.get('first_name')} {attributes.get('last_name')} ({attributes.get('email')})")
+    print(f"Gefundene Personen in Layer Group {layer_group_id}:")
+    for person in filtered:
+        attrs = person.get("attributes", {})
+        print(f"- {attrs.get('first_name')} {attrs.get('last_name')} ({attrs.get('email')})")
+
+
+if __name__ == "__main__":
+    main()
