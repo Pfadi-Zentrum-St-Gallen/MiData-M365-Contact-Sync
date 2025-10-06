@@ -41,7 +41,10 @@ jobs:
       
       - name: Commit and push if there are changes
         if: steps.check_changes.outputs.changes == 'true'
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git add .
           git commit -m "CI: Update MiData Powershell dependency to latest version"
-          git push
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/Pfadi-Zentrum-St-Gallen/MiData-M365-Contact-Sync.git
+          git push origin HEAD:${{ github.ref_name }}
