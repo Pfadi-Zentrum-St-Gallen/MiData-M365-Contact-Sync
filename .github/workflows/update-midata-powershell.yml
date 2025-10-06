@@ -1,0 +1,47 @@
+name: Update MiData Powershell Dependency
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Läuft jeden Sonntag um Mitternacht
+  workflow_dispatch:     # Ermöglicht manuelle Ausführung
+
+jobs:
+  update-dependency:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+      
+      - name: Create temp directory for MiData Powershell
+        run: mkdir -p temp_midata
+        
+      - name: Clone latest MiData Powershell repository
+        run: git clone https://github.com/Pfadi-Zentrum-St-Gallen/Hitobito-MiData-Powershell.git temp_midata
+      
+      - name: Copy MiData Powershell files to lib directory
+        run: |
+          mkdir -p lib/midata-powershell
+          cp -r temp_midata/* lib/midata-powershell/
+          rm -rf temp_midata
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Commit and push if there are changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git add .
+          git commit -m "CI: Update MiData Powershell dependency to latest version"
+          git push
